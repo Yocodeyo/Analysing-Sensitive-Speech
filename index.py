@@ -25,7 +25,7 @@ unique_groups.sort()
 unique_groups.insert(0, "all")
 
 app.layout = html.Div([
-    dcc.Tabs(id='tabs_dashboard', value='overall', children=[
+    dcc.Tabs(id='tabs_dashboard', value='main', children=[
         dcc.Tab(
             html.Div([
                 html.H2("Dashboard for Analyzing Sensitive Speech",
@@ -56,16 +56,26 @@ app.layout = html.Div([
                     dbc.Col([sentiment_analysis.layout])
                 ], className="mt-3"),
                 html.Div([ecdf.layout], className="mt-3"),
-                dbc.Row([
-                    dbc.Col([absa.layout]),
-                    dbc.Col([emotion_classif.layout])
-                ], className="mt-3"),
                 html.Br()
             ], style={
                 "paddingLeft": '30px',
                 "paddingRight": '30px',
                 "paddingTop": '30px'
-            }), label='Overall', value='overall'),
+            }), label='Main Graphs', value='main'),
+        dcc.Tab(
+            html.Div([
+                html.H2("Dashboard for Analyzing Sensitive Speech",
+                        style={'textAlign': 'center'}),
+                dbc.Row([
+                    dbc.Col([absa.layout]),
+                    dbc.Col([emotion_classif.layout])
+                ], className="mt-3"),
+            ], style={
+                "paddingLeft": '30px',
+                "paddingRight": '30px',
+                "paddingTop": '30px'
+            }), label='Emotion Analyses', value='emotion_analyses'
+        ),
         dcc.Tab(
             html.Div([
                 html.H2("Dashboard for Analyzing Sensitive Speech",
